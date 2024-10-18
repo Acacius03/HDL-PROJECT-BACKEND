@@ -1,13 +1,23 @@
-# import json
-import firebase_admin
-from firebase_admin import db, credentials
+# # import json
+# import firebase_admin
+# from firebase_admin import credentials, firestore, storage
 
-# Path to the JSON file
-# file_path = 'firebase_config.json'
+# cred = credentials.Certificate('firebase_config.json')
+# firebase_admin.initialize_app(cred)
 
-# Open and load the JSON file
-# with open(file_path, 'r') as file:
-    # firebase_config = json.load(file)
+# firestore_db = firestore.client()
+# storage_db = storage.bucket('gs://hdl-project-36053.appspot.com/Fingerprints')
+# print(storage_db)
 
-firebase_credentials = credentials.Certificate('firebase_config.json')
-firebase_admin.initialize_app(firebase_credentials)
+# # test firestore
+# # data = {
+# #     'name': 'Henry Sy',
+# #     'LoggedIn': True
+# # }
+
+# # doc_ref = firestore_db.collection('students').document()
+# # doc_ref.set(data)
+# # print('Document ID:', doc_ref.id)
+
+# # firestore_client = firestore_async.client(firebase) #asynchronous
+
