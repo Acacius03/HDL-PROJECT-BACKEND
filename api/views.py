@@ -19,16 +19,12 @@ def enroll(request):
     student = StudentSerializer(data=request.data)
     if not student.is_valid(): 
         return Response(student.errors, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        with transaction.atomic():
-            student.save()
-            if not FR.encode_new_face(f".{student.data['face_img']}"):
-                raise Exception("Face encoding failed.")  # Trigger rollback
-            return Response(student.data, status=status.HTTP_201_CREATED)
-    except Exception as e:
-        # Log the error if necessary
-        print(f"Error during enrollment: {str(e)}")
-        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    student.save()
+    print(student.data['face_img'])
+    if not FR.encode_new_face(f".{student.data['face_img']}"):
+        Student.objects.filter(id=student.data['id']).delete()
+        return Response({'error': 'Failed to encode face'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response(student.data, status=status.HTTP_201_CREATED)
 
 def find_user(pk):
     try:
@@ -69,15 +65,5 @@ def delete_user(request, pk):
 
 @api_view(['POST'])
 def login(request):
+    print(FR.recognize_faces(request.data['face_img']))
     return Response({'msg': 'Not yet finished'}, status=status.HTTP_200_OK)
-
-    # if 'fingerprint' not in request.FILES:
-    #     return Response({'error': 'Fingerprint file is required.'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    # # fingerprint = request.FILES['fingerprint']
-
-    # # Implement your fingerprint matching logic here
-    # # If match found:
-    # # return Response('success', status=status.HTTP_200_OK)
-
-    # return Response({'error': 'Fingerprint not recognized.'}, status=status.HTTP_400_BAD_REQUEST)
