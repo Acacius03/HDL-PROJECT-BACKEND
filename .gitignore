@@ -1,6 +1,6 @@
 .conda
+.Images
 .training
-.unknown
 .validation
 .output
-.Images
+__pycache__
