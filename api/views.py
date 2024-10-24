@@ -21,8 +21,7 @@ def enroll(request):
         return Response(student.errors, status=status.HTTP_400_BAD_REQUEST)
     try:
         with transaction.atomic():
-            student = student.save()
-            print(student.data)
+            student.save()
             if not FR.encode_new_face(f".{student.data['face_img']}"):
                 raise Exception("Face encoding failed.")  # Trigger rollback
             return Response(student.data, status=status.HTTP_201_CREATED)
