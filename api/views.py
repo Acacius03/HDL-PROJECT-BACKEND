@@ -7,7 +7,6 @@ from .models import Student
 from .serializer import StudentListSerializer, StudentSerializer
 from FaceRecognition import FR
 
-# FR = FaceRecognition()
 # Create your views here.
 @api_view(['GET'])
 def get_students(request):

@@ -38,7 +38,7 @@ class Student(models.Model):
 class Guardian(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
-    middle_initial = models.CharField(x_length=1)
+    middle_initial = models.CharField(max_length=1)
     last_name = models.CharField(max_length=30)
     suffix = models.CharField(max_length=5, choices=SUFFIX_CHOICES, default='None')
     phone_number = models.CharField(max_length=15, null=True, unique=True)
