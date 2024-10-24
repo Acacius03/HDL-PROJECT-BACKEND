@@ -3,7 +3,7 @@ import sqlite3
 DATABASE_PATH = "db.sqlite3"
 
 class Database():
-    connection = sqlite3.connect(DATABASE_PATH)
+    connection = sqlite3.connect(DATABASE_PATH, check_same_thread=False)
 
     def get(self, query:str) -> any:
         cursor = self.connection.cursor()

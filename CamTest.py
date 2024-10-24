@@ -42,7 +42,6 @@ while True:
         # print(faceDistance)
         matchIndex = np.argmin(faceDistance)
 
-
         if matches[matchIndex]:
             name = classNames[matchIndex].upper()
             print(name) # Pwede to tanggalin, pang testing lang

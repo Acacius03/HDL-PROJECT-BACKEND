@@ -11,8 +11,8 @@ class Student(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     face_img = models.ImageField(upload_to=student_directory_path, blank=True, null=True)
-    birth_date = models.DateField()
-    email =  models.EmailField()
+    # birth_date = models.DateField()
+    # email =  models.EmailField()
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
